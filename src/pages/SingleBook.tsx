@@ -65,7 +65,7 @@ const SingleBook = () => {
         <div className='mt-10'>
           {
             commentData?.data?.review.map((data:string) => <div>
-              <p className='my-3'>{data}</p>
+              <p className='my-2 font-medium text-gray-700'>{data}</p>
             </div>)
           }
         </div>
