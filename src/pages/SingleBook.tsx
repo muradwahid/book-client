@@ -1,22 +1,29 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import { useSingleBookQuery } from '../redux/features/bookApi';
+import { useGetCommnetQuery, usePostCommnetMutation, useSingleBookQuery } from '../redux/features/bookApi';
 import { Puff } from 'react-loader-spinner';
 
 const SingleBook = () => {
   const { id } = useParams();
-  const { data,isLoading } = useSingleBookQuery(id);
+  const { data, isLoading } = useSingleBookQuery(id);
+  const {data:commentData,}=useGetCommnetQuery(id,{refetchOnMountOrArgChange:true});
+  const [postComment,]=usePostCommnetMutation()
   const handleReview = (event:any) => {
     event.preventDefault();
-    console.log();
+    const from = event.target
+    const review=from.review.value;
+    const data = {
+      review: review,
+      author:id
+    }
+    postComment(data)
+    from.reset()
   }
 
 
-
-
   if (isLoading) {
-    return <div className='flex items-center justify-center'>
+    return <div className='h-[70vh] w-full flex items-center justify-center'>
       <div>
         <Puff
           height="80"
@@ -47,7 +54,7 @@ const SingleBook = () => {
         </div>
       </div>
       <div>
-        <p>Reviews</p>
+        <p className='text-lg font-semibold mt-10 mb-6'>Reviews</p>
         <form onSubmit={handleReview} action="" method="post">
           <div className='flex gap-4'>
             <label htmlFor="review font-semibold">Review:</label>
@@ -55,6 +62,13 @@ const SingleBook = () => {
           </div>
           <input type="submit" className='bg-yellow-600 px-5 py-2 text-white rounded-sm mt-6 cursor-pointer' value="Submit" />
         </form>
+        <div className='mt-10'>
+          {
+            commentData?.data?.review.map((data:string) => <div>
+              <p className='my-3'>{data}</p>
+            </div>)
+          }
+        </div>
       </div>
     </div>
   );
