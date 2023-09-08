@@ -51,6 +51,10 @@ const SingleBook = () => {
           <h3 className='text-lg text-gray-900 font-semibold'>{data?.data?.title}</h3>
           <p><span className='text-yellow-600'>Author:</span> {data?.data?.author}</p>
           <p><span className='text-yellow-600'>Genre:</span> {data?.data?.genre}</p>
+        <div className='mt-4 flex gap-3'>
+          <button className='bg-yellow-500 px-4 py-1 text-gray-200 rounded-md'>Edit Book</button>
+            <button className='bg-red-500 px-4 py-1 text-gray-200 rounded-md'>Delete Book</button>
+        </div>
         </div>
       </div>
       <div>
