@@ -1,12 +1,13 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React from 'react';
 import { useAppSelector } from '../redux/hook';
+import { usePostBookMutation } from '../redux/features/bookApi';
 
 const AddBook = () => {
-  const {user}=useAppSelector(state=>state.user)
+  const { user } = useAppSelector(state => state.user)
+  const [postBook,{error}]=usePostBookMutation()
   const handlePost = (e:any) => {
     e.preventDefault();
-    const date = new Date();
     const form = e.target;
     const title = form.title.value;
     const author = form.author.value;
@@ -32,11 +33,12 @@ const AddBook = () => {
             publicationDate,
             image: imgData.data.url,
           }
-          
+          postBook(postData)
         }
 
       })
   }
+  console.log(error)
   return (
     <div className='mainContainer mx-auto'>
       <h2 className='text-center'>Add Book</h2>
@@ -63,7 +65,7 @@ const AddBook = () => {
             <input type="file" name='image' />
           </div>
           <div>
-            <input type="submit" value="Submit" />
+            <input className='btn btn-primary' type="submit" value="Submit" />
           </div>
         </form>
       </div>
