@@ -3,10 +3,15 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import { RxCross2 } from "react-icons/rx";
 import { Link } from 'react-router-dom';
 import { useAppSelector } from '../redux/hook';
+import { signOut } from 'firebase/auth';
+import { auth } from '../firebase/firebase';
 const NavBar = () => {
   const {user}=useAppSelector(state=>state.user)
   const [toggle, setToggle] = useState(true);
-
+  const handleLogout = () => {
+    signOut(auth)
+    .then(() => { })
+  }
   const menuItems = <>
     <li>
       <Link to='/'>Home</Link>
@@ -15,7 +20,7 @@ const NavBar = () => {
       <Link to='/allbook'>All Books</Link>
     </li>
     {
-      user?.email ? <li>
+      user?.email ? <li onClick={handleLogout}>
         <span>LogOut</span>
       </li> : <>
           <li>
