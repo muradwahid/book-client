@@ -38,7 +38,7 @@ const NavBar = () => {
     <div className='bg-black'>
       <div className='mainContainer mx-auto flex items-center justify-between'>
         <div className='py-3'>
-          <p className='text-gray-200 lobsterFont text-4xl'>Books Bazar</p>
+          <p className='text-gray-200 lobsterFont text-4xl'><Link to='/'>Books Bazar</Link></p>
         </div>
         <div className='lg:block hidden'>
           <ul className=' text-gray-200 text-xl flex items-center gap-6 navMainList'>
