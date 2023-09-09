@@ -5,7 +5,6 @@ import { useGetBooksQuery } from '../../redux/features/bookApi';
 
 const RecentlyAddedBooks = () => {
   const { data, isLoading } = useGetBooksQuery(undefined, undefined)
-  console.log(data?.data)
   return (
     <div>
       <h2 className='text-2xl font-bold my-6'>Recently added</h2>

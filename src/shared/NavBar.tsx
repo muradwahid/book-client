@@ -22,7 +22,6 @@ const NavBar = () => {
       <Link to='/register'>Register</Link>
     </li></>
 
-
   return (
     <div className='bg-black'>
       <div className='mainContainer mx-auto flex items-center justify-between'>
