@@ -4,7 +4,8 @@ import { Link } from 'react-router-dom';
 import { useGetBooksQuery } from '../../redux/features/bookApi';
 
 const RecentlyAddedBooks = () => {
-  const {data,isLoading}=useGetBooksQuery(undefined, undefined)
+  const { data, isLoading } = useGetBooksQuery(undefined, undefined)
+  console.log(data?.data)
   return (
     <div>
       <h2 className='text-2xl font-bold my-6'>Recently added</h2>
@@ -13,7 +14,7 @@ const RecentlyAddedBooks = () => {
           <p>Loading...</p>
         </div>}
         {
-          data?.data.map((book:any) => <div>
+          data?.data?.map((book:any) => <div>
             <img src={book?.image} alt="" />
             <h4 className='mt-4 text-xl text-gray-600 font-semibold'><Link to={`/book/${book?._id}`}>{book?.title}</Link></h4>
           </div>)
