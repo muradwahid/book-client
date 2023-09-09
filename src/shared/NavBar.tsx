@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 import { GiHamburgerMenu } from "react-icons/gi";
 import { RxCross2 } from "react-icons/rx";
 import { Link } from 'react-router-dom';
+import { useAppSelector } from '../redux/hook';
 const NavBar = () => {
+  const {user}=useAppSelector(state=>state.user)
   const [toggle, setToggle] = useState(true);
 
   const menuItems = <>
@@ -12,15 +14,20 @@ const NavBar = () => {
     <li>
       <Link to='/allbook'>All Books</Link>
     </li>
-    <li>
-      <span>LogOut</span>
-    </li>
-    <li>
-      <Link to='/login'>Login</Link>
-    </li>
-    <li>
-      <Link to='/register'>Register</Link>
-    </li></>
+    {
+      user?.email ? <li>
+        <span>LogOut</span>
+      </li> : <>
+          <li>
+            <Link to='/login'>Login</Link>
+          </li>
+          <li>
+            <Link to='/register'>Register</Link>
+          </li>
+      </>
+    }
+    
+ </>
 
   return (
     <div className='bg-black'>

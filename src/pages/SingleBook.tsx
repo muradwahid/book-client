@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Puff } from 'react-loader-spinner';
 import { useParams } from 'react-router-dom';
 import { useGetCommnetQuery, usePostCommnetMutation, useSingleBookQuery } from '../redux/features/bookApi';
